@@ -1,3 +1,4 @@
+// Import express package
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -8,36 +9,55 @@ const uuid = require('./helpers/uuid');
 
 // Our Server
 const PORT = 3001;
+// Initialize our app variable by setting it to the value of express()
 const app = express();
 
+// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 // Async Read and Write Processes
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-app.use(express.static("./develop/public"));
-
 // GET request for note || API Route
 app.get('/api/notes', function (req, res) {
-    readFileAsync('./db/db.json', 'utf8').then(function(data) {
+    fs.readFileAsync('./Develop/db/db.json', 'utf8').then(function(data) {
         res.json(notes);   
     });
   });
 
 // POST request for note || API Route
-app.get('/api/notes', function (req, res) {
-    readFileAsync('./db/db.json', 'utf8').then(function(data) {
+app.post('/api/notes', function (req, res) {
+    fs.readFileAsync('./Develop/db/db.json', 'utf8').then(function(data) {
         const note = [].concat(JSON.parse(data));
         note.id = note.length + 1
         note.push(note);
         return note
     }).then(function(notes) {
-        writeFileAsync('./db/db.json', JSON.stringify(notes))
+        fs.writeFileAsync('./Develop/db/db.json', JSON.stringify(notes))
     })
 });
 
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
-);
+// HTML Routes
+
+app.get('/notes', function(req, res) {
+    res.sendFile(path.join(__dirname + './Develop/develop/public/index.html'));
+  });
+
+// Add a static route for index.html
+app.get('/', function(req, res) {
+    // `res.sendFile` is Express' way of sending a file
+    // `__dirname` is a variable that always returns the directory that your server is running in
+    res.sendFile(path.join(__dirname + './Develop/develop/public/index.html'));
+  });
+
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, './Develop/develop/public/index.html'));
+  });
+
+// Listening Port
+app.listen(PORT, function () {
+  console.log(`App listening on PORT: 🚀` + PORT);
+});
