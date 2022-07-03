@@ -8,7 +8,7 @@ const util = require('./db/db.json');
 const uuid = require('./helpers/uuid');
 
 // Our Server
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 // Initialize our app variable by setting it to the value of express()
 const app = express();
 
@@ -16,10 +16,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
-
-// Async Read and Write Processes
-const readFileAsync = util.promisify(fs.readFile);
-const writeFileAsync = util.promisify(fs.writeFile);
 
 // GET request for note || API Route
 app.get('/api/notes', function (req, res) {
@@ -43,7 +39,7 @@ app.post('/api/notes', function (req, res) {
 // HTML Routes
 
 app.get('/notes', function(req, res) {
-    res.sendFile(path.join(__dirname + './Develop/develop/public/index.html'));
+    res.sendFile(path.join(__dirname + './Develop/develop/public/notes.html'));
   });
 
 // Add a static route for index.html
