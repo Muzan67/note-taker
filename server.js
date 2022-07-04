@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const util = require('./db/db/db.json');
+const util = require('./db/db.json');
 
 // Helper method for generating unique ids
 const uuid = require('./db/helpers/uuid');
@@ -40,11 +40,11 @@ app.post('/api/notes', (req, res) => {
 app.get('/notes', (req, res) => {
   // `res.sendFile` is Express' way of sending a file
     // `__dirname` is a variable that always returns the directory that your server is running in
-    res.sendFile(path.join(__dirname, './public.notes.html'));
+    res.sendFile(path.join(__dirname, './public/notes.html'));
   });
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public.index.html'));
+    res.sendFile(path.join(__dirname, './public/index.html'));
   });
 
 // Listening Port
