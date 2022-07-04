@@ -26,7 +26,7 @@ app.get('/api/notes', (req, res) => {
 
 // POST request for note || API Route
 app.post('/api/notes', (req, res) => {
-    const dataNotes = fs.readFileSync(_path.join(_dirname, './db/db.json'), 'utf-8');
+    const dataNotes = fs.readFileSync(path.join(_dirname, './db/db.json'), 'utf-8');
     const parseNotes = JSON.parse(dataNotes); 
     req.body.id = uuid()
     parseNotes.push(req.body);
