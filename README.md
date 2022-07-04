@@ -19,5 +19,6 @@ The Note Taker App has NPM packages installed and is using Express.js back end w
 # Credits
 https://www.freecodecamp.org/news/how-to-deploy-an-application-to-heroku/ -  Instructions on how to deploy my app onto Heroku
 
-
+# Screenshot of Deployed Application
+![image](https://user-images.githubusercontent.com/102841726/177076454-a2fbd506-bfca-44b4-9257-4423505a9f5e.png) 
 
