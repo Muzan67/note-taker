@@ -4,7 +4,7 @@ https://drive.google.com/file/d/1h-UCbAFem7L8bbIH44zXO8m1fLlyVWbL/view?usp=shari
 Video of Note App in demonstration.
 
 # License
-'[![License: mit](https://img.shields.io/badge/License-MIT-yellow.svg])'
+[License: mit](https://img.shields.io/badge/License-MIT-yellow.svg])]
 
 # Note Taker APP
 The Note Taker App has been developed for the user to write and save notes to keep track of tasks and setting reminders for personal use. 
