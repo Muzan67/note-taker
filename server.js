@@ -19,7 +19,7 @@ app.use(express.static('public'));
 
 // GET request for note || API Route
 app.get('/api/notes', (req, res) => {
-    const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), 'utf8');
+    const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), 'UTF-8');
     const parseNotes = JSON.parse(dataNotes);  
     res.json(parseNotes); 
   });
